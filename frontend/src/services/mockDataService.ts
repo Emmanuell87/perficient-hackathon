@@ -56,31 +56,37 @@ export function generateMockTelemetry(sensorId: string, sensorCategory: string):
   return reading;
 }
 
-// Mock dome data
+// Mock dome data - Domos reales del backend
 export const mockDomes: ApiDome[] = [
   {
     id: '550e8400-e29b-41d4-a716-446655440001',
-    code: 'DOME_ALPHA',
-    name: 'Dome Alpha',
+    code: 'CHARLIE',
+    name: 'Dome Charlie',
     dome_type: 'HABITATION',
     alert_level: 0,
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    status: 'OPERATIONAL',
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440002',
-    code: 'DOME_BETA',
-    name: 'Dome Beta',
+    code: 'ALPHA',
+    name: 'Dome Alpha',
     dome_type: 'RESEARCH',
     alert_level: 1,
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    status: 'OPERATIONAL',
   },
   {
     id: '550e8400-e29b-41d4-a716-446655440003',
-    code: 'DOME_GAMMA',
-    name: 'Dome Gamma',
+    code: 'BRAVO',
+    name: 'Dome Bravo',
     dome_type: 'AGRICULTURE',
     alert_level: 2,
     created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+    status: 'OPERATIONAL',
   },
 ];
 

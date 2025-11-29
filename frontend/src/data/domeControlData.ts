@@ -1,4 +1,4 @@
-import { Dome, DomeCategory, AlertStatus } from '../types';
+import { DomeCategory, AlertStatus } from '../types';
 
 // Common categories for all domes
 export const defaultCategories: DomeCategory[] = [
@@ -650,51 +650,6 @@ export const defaultCategories: DomeCategory[] = [
                 ]
             }
         ]
-    }
-];
-
-export const domes: Dome[] = [
-    {
-        id: 'dome-alpha',
-        name: 'Dome Alpha',
-        position: { x: 20, y: 25 },  // Esquina superior izquierda
-        status: 'ok' as AlertStatus,
-        population: 8,
-        systems: [
-            { name: 'Life Support', value: '98%', status: 'ok' as AlertStatus },
-            { name: 'Power', value: '450kW', status: 'ok' as AlertStatus },
-            { name: 'Structural', value: '100%', status: 'ok' as AlertStatus },
-            { name: 'Supplies', value: '85%', status: 'ok' as AlertStatus }
-        ],
-        categories: defaultCategories
-    },
-    {
-        id: 'dome-beta',
-        name: 'Dome Beta',
-        position: { x: 75, y: 30 },  // Esquina superior derecha
-        status: 'warning' as AlertStatus,
-        population: 6,
-        systems: [
-            { name: 'Life Support', value: '85%', status: 'warning' as AlertStatus },
-            { name: 'Power', value: '320kW', status: 'ok' as AlertStatus },
-            { name: 'Structural', value: '95%', status: 'ok' as AlertStatus },
-            { name: 'Supplies', value: '72%', status: 'warning' as AlertStatus }
-        ],
-        categories: defaultCategories
-    },
-    {
-        id: 'dome-gamma',
-        name: 'Dome Gamma',
-        position: { x: 45, y: 70 },  // Centro inferior
-        status: 'critical' as AlertStatus,
-        population: 4,
-        systems: [
-            { name: 'Life Support', value: '45%', status: 'critical' as AlertStatus },
-            { name: 'Power', value: '150kW', status: 'warning' as AlertStatus },
-            { name: 'Structural', value: '60%', status: 'critical' as AlertStatus },
-            { name: 'Supplies', value: '38%', status: 'critical' as AlertStatus }
-        ],
-        categories: defaultCategories
     }
 ];
 

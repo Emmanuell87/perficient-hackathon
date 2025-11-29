@@ -374,11 +374,10 @@ function calculateCategoryStatus(systems: any[]): AlertStatus {
  * Distributed positions to avoid overlap
  */
 function getDefaultDomePosition(code: string): { x: number; y: number } {
-  // Mapping with VERY separated positions for better visualization
   const positions: Record<string, { x: number; y: number }> = {
-    'DOME_ALPHA': { x: 15, y: 20 },    // Top left corner
-    'DOME_BETA': { x: 80, y: 25 },     // Top right corner
-    'DOME_GAMMA': { x: 50, y: 80 },    // Bottom center
+    'DOME_CHARLIE': { x: 20, y: 25 },
+    'DOME_ALPHA': { x: 75, y: 30 },
+    'DOME_BRAVO': { x: 45, y: 70 },
   };
 
   console.log(`getDefaultDomePosition(${code}) =>`, positions[code] || { x: 50, y: 50 });

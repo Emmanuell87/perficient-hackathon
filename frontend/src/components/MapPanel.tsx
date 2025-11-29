@@ -135,20 +135,6 @@ export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fu
                                 <span>{dome.systems.filter(s => s.status === 'ok').length}/{dome.systems.length} OK</span>
                             </div>
                         </div>
-
-                        {fullscreen && dome.id === 'dome-alpha' && (
-                            <svg className="absolute top-1/2 left-1/2 pointer-events-none" style={{ width: '25vw', height: '10vh' }}>
-                                <line 
-                                    x1="0" 
-                                    y1="0" 
-                                    x2="100%" 
-                                    y2="100%" 
-                                    stroke="rgba(99,110,123,0.3)" 
-                                    strokeWidth="1.5" 
-                                    strokeDasharray="5,5"
-                                />
-                            </svg>
-                        )}
                     </button>
                 );
             })}

@@ -20,18 +20,18 @@ export const domes: Dome[] = [
         position: { x: 35, y: 45 },
         status: 'ok',
         systems: [
-            { name: 'Soporte Vital', value: '98%', status: 'ok' },
-            { name: 'Energía', value: '450kW', status: 'ok' },
-            { name: 'Escudos', value: '100%', status: 'ok' },
-            { name: 'Suministros', value: '85%', status: 'ok' }
+            { name: 'Life Support', value: '98%', status: 'ok' },
+            { name: 'Energy', value: '450kW', status: 'ok' },
+            { name: 'Shields', value: '100%', status: 'ok' },
+            { name: 'Supplies', value: '85%', status: 'ok' }
         ],
         actuators: [
-            { name: 'Depurador CO₂', enabled: true },
-            { name: 'Conversor MOXIE', enabled: true },
-            { name: 'Reciclador de Agua', enabled: true },
-            { name: 'Esclusa de Emergencia', enabled: false },
-            { name: 'Válvula O₂ Interconexión', enabled: false },
-            { name: 'Corte Laboratorios', enabled: false }
+            { name: 'CO₂ Scrubber', enabled: true },
+            { name: 'MOXIE Converter', enabled: true },
+            { name: 'Water Recycler', enabled: true },
+            { name: 'Emergency Airlock', enabled: false },
+            { name: 'O₂ Interconnection Valve', enabled: false },
+            { name: 'Laboratory Shutoff', enabled: false }
         ]
     },
     {
@@ -40,18 +40,18 @@ export const domes: Dome[] = [
         position: { x: 60, y: 55 },
         status: 'warning',
         systems: [
-            { name: 'Soporte Vital', value: '85%', status: 'warning' },
-            { name: 'Energía', value: '320kW', status: 'ok' },
-            { name: 'Escudos', value: '95%', status: 'ok' },
-            { name: 'Suministros', value: '72%', status: 'warning' }
+            { name: 'Life Support', value: '85%', status: 'warning' },
+            { name: 'Energy', value: '320kW', status: 'ok' },
+            { name: 'Shields', value: '95%', status: 'ok' },
+            { name: 'Supplies', value: '72%', status: 'warning' }
         ],
         actuators: [
-            { name: 'Depurador CO₂', enabled: true },
-            { name: 'Conversor MOXIE', enabled: false },
-            { name: 'Reciclador de Agua', enabled: false },
-            { name: 'Esclusa de Emergencia', enabled: false },
-            { name: 'Válvula O₂ Interconexión', enabled: true },
-            { name: 'Corte Laboratorios', enabled: false }
+            { name: 'CO₂ Scrubber', enabled: true },
+            { name: 'MOXIE Converter', enabled: false },
+            { name: 'Water Recycler', enabled: false },
+            { name: 'Emergency Airlock', enabled: false },
+            { name: 'O₂ Interconnection Valve', enabled: true },
+            { name: 'Laboratory Shutoff', enabled: false }
         ]
     },
     {
@@ -60,35 +60,35 @@ export const domes: Dome[] = [
         position: { x: 45, y: 70 },
         status: 'critical',
         systems: [
-            { name: 'Soporte Vital', value: '45%', status: 'critical' },
-            { name: 'Energía', value: '150kW', status: 'warning' },
-            { name: 'Escudos', value: '60%', status: 'critical' },
-            { name: 'Suministros', value: '38%', status: 'critical' }
+            { name: 'Life Support', value: '45%', status: 'critical' },
+            { name: 'Energy', value: '150kW', status: 'warning' },
+            { name: 'Shields', value: '60%', status: 'critical' },
+            { name: 'Supplies', value: '38%', status: 'critical' }
         ],
         actuators: [
-            { name: 'Depurador CO₂', enabled: false },
-            { name: 'Conversor MOXIE', enabled: true },
-            { name: 'Reciclador de Agua', enabled: true },
-            { name: 'Esclusa de Emergencia', enabled: true },
-            { name: 'Válvula O₂ Interconexión', enabled: true },
-            { name: 'Corte Laboratorios', enabled: true }
+            { name: 'CO₂ Scrubber', enabled: false },
+            { name: 'MOXIE Converter', enabled: true },
+            { name: 'Water Recycler', enabled: true },
+            { name: 'Emergency Airlock', enabled: true },
+            { name: 'O₂ Interconnection Valve', enabled: true },
+            { name: 'Laboratory Shutoff', enabled: true }
         ]
     }
 ];
 
 export const categories: Category[] = [
-    // 1. SISTEMA DE SOPORTE VITAL (ECLSS)
+    // 1. LIFE SUPPORT SYSTEM (ECLSS)
     {
         id: 'life-support',
-        name: 'Soporte Vital (ECLSS)',
+        name: 'Life Support (ECLSS)',
         systems: [
             {
                 id: 'atmosphere',
-                name: 'Atmósfera y Aire',
+                name: 'Atmosphere and Air',
                 resources: [
                     {
                         id: 'o2-level',
-                        name: 'Nivel de Oxígeno',
+                        name: 'Oxygen Level',
                         value: '21',
                         unit: '%',
                         status: 'ok',
@@ -97,7 +97,7 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'o2-reserves',
-                        name: 'Reservas O₂ Líquido',
+                        name: 'Liquid O₂ Reserves',
                         value: '450',
                         unit: 'kg',
                         status: 'ok',
@@ -133,7 +133,7 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'pressure',
-                        name: 'Presión Atmosférica',
+                        name: 'Atmospheric Pressure',
                         value: '101.3',
                         unit: 'kPa',
                         status: 'ok',
@@ -144,7 +144,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'water',
-                name: 'Gestión del Agua',
+                name: 'Water Management',
                 resources: [
                     {
                         id: 'potable-water',
@@ -195,7 +195,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'thermal',
-                name: 'Regulación Térmica',
+                name: 'Thermal Regulation',
                 resources: [
                     {
                         id: 'internal-temp',
@@ -208,7 +208,7 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'thermal-shields',
-                        name: 'Escudos Térmicos',
+                        name: 'Thermal Shields',
                         value: '98',
                         unit: '%',
                         status: 'ok',
@@ -220,14 +220,14 @@ export const categories: Category[] = [
         ]
     },
 
-    // 2. ENERGÍA Y POTENCIA
+    // 2. ENERGY AND POWER
     {
         id: 'energy',
-        name: 'Energía y Potencia',
+        name: 'Energy and Power',
         systems: [
             {
                 id: 'solar',
-                name: 'Generación Solar',
+                name: 'Solar Generation',
                 resources: [
                     {
                         id: 'solar-efficiency',
@@ -260,7 +260,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'nuclear',
-                name: 'Generación Nuclear',
+                name: 'Nuclear Generation',
                 resources: [
                     {
                         id: 'reactor-temp',
@@ -282,9 +282,9 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'fuel-life',
-                        name: 'Vida Útil Combustible',
+                        name: 'Fuel Life',
                         value: '2847',
-                        unit: 'días',
+                        unit: 'days',
                         status: 'ok',
                         sparklineData: generateSparkline(2847, 1),
                         historicalData: generateTrend(2847, 1)
@@ -293,7 +293,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'hydrogen',
-                name: 'Celdas de Hidrógeno',
+                name: 'Hydrogen Cells',
                 resources: [
                     {
                         id: 'h2-reserves',
@@ -318,20 +318,20 @@ export const categories: Category[] = [
         ]
     },
 
-    // 3. SUMINISTROS E INVENTARIO
+    // 3. SUPPLIES AND INVENTORY
     {
         id: 'supplies',
-        name: 'Suministros e Inventario',
+        name: 'Supplies and Inventory',
         systems: [
             {
                 id: 'food',
-                name: 'Alimentación',
+                name: 'Food',
                 resources: [
                     {
                         id: 'emergency-rations',
-                        name: 'Raciones de Emergencia',
+                        name: 'Emergency Rations',
                         value: '180',
-                        unit: 'días',
+                        unit: 'days',
                         status: 'ok',
                         sparklineData: generateSparkline(180, 5),
                         historicalData: generateTrend(180, 5)
@@ -356,7 +356,7 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'nutrients',
-                        name: 'Solución Nutritiva NPK',
+                        name: 'NPK Nutrient Solution',
                         value: '85',
                         unit: 'kg',
                         status: 'warning',
@@ -367,7 +367,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'materials',
-                name: 'Materiales de Construcción',
+                name: 'Construction Materials',
                 resources: [
                     {
                         id: 'regolith',
@@ -409,7 +409,7 @@ export const categories: Category[] = [
             },
             {
                 id: 'spare-parts',
-                name: 'Repuestos Críticos',
+                name: 'Critical Spare Parts',
                 resources: [
                     {
                         id: 'hepa-filters',
@@ -443,10 +443,10 @@ export const categories: Category[] = [
         ]
     },
 
-    // 4. INFRAESTRUCTURA Y SEGURIDAD
+    // 4. INFRASTRUCTURE AND SECURITY
     {
         id: 'infrastructure',
-        name: 'Infraestructura y Seguridad',
+        name: 'Infrastructure and Security',
         systems: [
             {
                 id: 'structural',
@@ -463,7 +463,7 @@ export const categories: Category[] = [
                     },
                     {
                         id: 'radiation-shield',
-                        name: 'Blindaje de Radiación',
+                        name: 'Radiation Shielding',
                         value: '45',
                         unit: 'cm equiv.',
                         status: 'ok',
@@ -487,7 +487,7 @@ export const categories: Category[] = [
                 resources: [
                     {
                         id: 'radiation-level',
-                        name: 'Nivel de Radiación',
+                        name: 'Radiation Level',
                         value: '0.24',
                         unit: 'Sv/h',
                         status: 'ok',
@@ -517,14 +517,14 @@ export const categories: Category[] = [
         ]
     },
 
-    // 5. RECURSOS HUMANOS Y SALUD
+    // 5. HUMAN RESOURCES AND HEALTH
     {
         id: 'health',
-        name: 'Recursos Humanos y Salud',
+        name: 'Human Resources and Health',
         systems: [
             {
                 id: 'population',
-                name: 'Población',
+                name: 'Population',
                 resources: [
                     {
                         id: 'dome-alpha-crew',
@@ -566,29 +566,29 @@ export const categories: Category[] = [
             },
             {
                 id: 'medical',
-                name: 'Suministros Médicos',
+                name: 'Medical Supplies',
                 resources: [
                     {
                         id: 'antibiotics',
-                        name: 'Antibióticos',
+                        name: 'Antibiotics',
                         value: '240',
-                        unit: 'dosis',
+                        unit: 'doses',
                         status: 'ok',
                         sparklineData: generateSparkline(240, 10),
                         historicalData: generateTrend(240, 10)
                     },
                     {
                         id: 'analgesics',
-                        name: 'Analgésicos',
+                        name: 'Analgesics',
                         value: '480',
-                        unit: 'dosis',
+                        unit: 'doses',
                         status: 'ok',
                         sparklineData: generateSparkline(480, 20),
                         historicalData: generateTrend(480, 20)
                     },
                     {
                         id: 'medical-o2',
-                        name: 'O₂ Médico',
+                        name: 'Medical O₂',
                         value: '180',
                         unit: 'L',
                         status: 'warning',

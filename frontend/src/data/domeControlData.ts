@@ -1,8 +1,8 @@
 import { Dome, DomeCategory, AlertStatus } from '../types';
 
-// Categorías comunes para todos los domos
+// Common categories for all domes
 export const defaultCategories: DomeCategory[] = [
-    // 1. ECLSS - Sistema de Soporte Vital
+    // 1. ECLSS - Life Support System
     {
         id: 'eclss',
         name: 'Life Support (ECLSS)',
@@ -166,7 +166,7 @@ export const defaultCategories: DomeCategory[] = [
         ]
     },
     
-    // 2. ENERGÍA Y POTENCIA
+    // 2. ENERGY AND POWER
     {
         id: 'power',
         name: 'Energy & Power',
@@ -333,7 +333,7 @@ export const defaultCategories: DomeCategory[] = [
         ]
     },
 
-    // 3. SUMINISTROS E INVENTARIO
+    // 3. SUPPLIES AND INVENTORY
     {
         id: 'supplies',
         name: 'Supplies & Inventory',
@@ -417,7 +417,7 @@ export const defaultCategories: DomeCategory[] = [
         ]
     },
 
-    // 4. INFRAESTRUCTURA Y SEGURIDAD
+    // 4. INFRASTRUCTURE AND SECURITY
     {
         id: 'infrastructure',
         name: 'Infrastructure & Security',
@@ -523,7 +523,7 @@ export const defaultCategories: DomeCategory[] = [
         ]
     },
 
-    // 5. RECURSOS HUMANOS Y SALUD
+    // 5. HUMAN RESOURCES AND HEALTH
     {
         id: 'health',
         name: 'Human Resources & Health',
@@ -657,7 +657,7 @@ export const domes: Dome[] = [
     {
         id: 'dome-alpha',
         name: 'Dome Alpha',
-        position: { x: 35, y: 45 },
+        position: { x: 20, y: 25 },  // Esquina superior izquierda
         status: 'ok' as AlertStatus,
         population: 8,
         systems: [
@@ -671,7 +671,7 @@ export const domes: Dome[] = [
     {
         id: 'dome-beta',
         name: 'Dome Beta',
-        position: { x: 60, y: 55 },
+        position: { x: 75, y: 30 },  // Esquina superior derecha
         status: 'warning' as AlertStatus,
         population: 6,
         systems: [
@@ -685,7 +685,7 @@ export const domes: Dome[] = [
     {
         id: 'dome-gamma',
         name: 'Dome Gamma',
-        position: { x: 45, y: 70 },
+        position: { x: 45, y: 70 },  // Centro inferior
         status: 'critical' as AlertStatus,
         population: 4,
         systems: [

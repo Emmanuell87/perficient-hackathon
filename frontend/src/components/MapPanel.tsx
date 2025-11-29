@@ -57,6 +57,12 @@ const BACKGROUND_OPACITY = 0.6;
 const GRID_PATTERN_SIZE = '100px';
 
 export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fullscreen = false }: MapPanelProps) {
+    // Debug: Log dome positions
+    console.log('MapPanel - Dome positions:', domes.map(d => ({ 
+        name: d.name, 
+        position: d.position 
+    })));
+    
     return (
         <div className="relative w-full h-full bg-mars-bg overflow-hidden">
             <div
@@ -71,15 +77,27 @@ export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fu
 
             <div className="absolute inset-0 bg-[linear-gradient(rgba(99,110,123,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(99,110,123,0.06)_1px,transparent_1px)] bg-[size:100px_100px]" />
 
-            {domes.map(dome => {
+            {domes.map((dome, index) => {
                 const colors = STATUS_COLORS[dome.status];
+                
+                console.log(`MapPanel Dome ${index}:`, {
+                    name: dome.name,
+                    id: dome.id,
+                    position: dome.position,
+                    styleLeft: `${dome.position.x}%`,
+                    styleTop: `${dome.position.y}%`
+                });
 
                 return (
                     <button
                         key={dome.id}
                         onClick={() => onDomeSelect(dome)}
                         className="absolute transform -translate-x-1/2 -translate-y-1/2 group/marker z-20"
-                        style={{ left: `${dome.position.x}%`, top: `${dome.position.y}%` }}
+                        style={{ 
+                            left: `${dome.position.x}%`, 
+                            top: `${dome.position.y}%`,
+                            zIndex: 20 + index  // Asegurar que cada uno tenga diferente z-index
+                        }}
                     >
                         {dome.status === 'critical' && (
                             <div className="absolute inset-0 rounded-full animate-ping opacity-20 bg-status-critical" />

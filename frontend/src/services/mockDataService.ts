@@ -1,4 +1,5 @@
 // Service to provide mock data when backend is unavailable
+import { API_BASE_URL } from '../config/constants';
 import type {
   ApiDome,
   ApiResource,
@@ -13,9 +14,12 @@ import type {
 const mockTelemetryData: Record<string, ApiTelemetryReading> = {};
 
 // Generate simulated telemetry for a sensor
-export function generateMockTelemetry(sensorId: string, sensorCategory: string): ApiTelemetryReading {
+export function generateMockTelemetry(
+  sensorId: string,
+  sensorCategory: string
+): ApiTelemetryReading {
   const now = new Date().toISOString();
-  
+
   // If it already exists, update it slightly
   if (mockTelemetryData[sensorId]) {
     const existing = mockTelemetryData[sensorId];
@@ -236,11 +240,11 @@ export async function isBackendAvailable(): Promise<boolean> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 2000); // 2 seconds timeout
-    
-    const response = await fetch('http://localhost:3000/api/domes', {
+
+    const response = await fetch(`${API_BASE_URL}/domes`, {
       signal: controller.signal,
     });
-    
+
     clearTimeout(timeoutId);
     return response.ok;
   } catch (error) {
@@ -257,18 +261,17 @@ let cachedStatus = false;
 
 export async function checkBackendStatus(): Promise<boolean> {
   const now = Date.now();
-  
+
   // If we already checked recently, use cache
   if (now - lastCheck < BACKEND_CHECK_INTERVAL) {
     return cachedStatus;
   }
-  
+
   const available = await isBackendAvailable();
   cachedStatus = available;
   lastCheck = now;
-  
+
   localStorage.setItem(BACKEND_STATUS_KEY, JSON.stringify(available));
-  
+
   return available;
 }
-

@@ -46,7 +46,6 @@ export function mapDomeToUI(
   sensors: ApiSensor[] = [],
   alerts: ApiAlert[] = []
 ): Dome {
-  // Calculate global status based on active alerts
   const domeAlerts = alerts.filter(a => a.dome_id === apiDome.id && a.is_active);
   const hasCritical = domeAlerts.some(a => a.level === 'CRITICAL');
   const hasWarning = domeAlerts.some(a => a.level === 'WARNING');
@@ -55,16 +54,13 @@ export function mapDomeToUI(
   if (hasCritical) globalStatus = 'critical';
   else if (hasWarning && globalStatus === 'ok') globalStatus = 'warning';
 
-  // Calculate basic systems from inventory
   const vitalResources = inventory.filter(inv => inv.resources.is_vital);
   const lifeSupportStatus = calculateLifeSupportStatus(vitalResources);
   const suppliesStatus = calculateSuppliesStatus(inventory);
   
-  // Calculate power from sensors
   const powerSensors = sensors.filter(s => s.category === 'POWER');
   const powerStatus = calculatePowerStatus(powerSensors);
 
-  // Enrich categories with backend data
   const enrichedCategories = enrichCategoriesWithBackendData(
     defaultCategories,
     inventory,
@@ -96,10 +92,8 @@ function enrichCategoriesWithBackendData(
   sensors: ApiSensor[]
 ): DomeCategory[] {
   return categories.map(category => {
-    // Clone category to avoid mutating the original
     const enrichedCategory = JSON.parse(JSON.stringify(category)) as DomeCategory;
 
-    // Inject inventory resources into appropriate categories
     if (category.id === 'eclss') {
       enrichedCategory.systems = injectLifeSupportResources(category.systems, inventory, sensors);
     } else if (category.id === 'power') {
@@ -108,7 +102,6 @@ function enrichCategoriesWithBackendData(
       enrichedCategory.systems = injectSupplyResources(category.systems, inventory);
     }
 
-    // Update category status based on its systems
     enrichedCategory.status = calculateCategoryStatus(enrichedCategory.systems);
 
     return enrichedCategory;
@@ -121,18 +114,13 @@ function enrichCategoriesWithBackendData(
 function injectLifeSupportResources(systems: any[], inventory: ApiInventory[], sensors: ApiSensor[]): any[] {
   const enrichedSystems = [...systems];
 
-  // Find vital resources
   const oxygenResource = inventory.find(inv => inv.resources.code === 'OXYGEN' || inv.resources.code === 'O2');
   const waterResource = inventory.find(inv => inv.resources.code === 'WATER');
-
-  // Inject oxygen sensor if it exists
   const oxygenSensor = sensors.find(s => s.category === 'LIFE_SUPPORT' && s.code.includes('O2'));
   
   if (oxygenResource || oxygenSensor) {
-    // Find atmosphere system and add progress control
     const atmosphereSystem = enrichedSystems.find(s => s.id === 'atmosphere');
     if (atmosphereSystem && oxygenResource) {
-      // Only add if it doesn't already exist
       const existingSubsystem = atmosphereSystem.subsystems.find((sub: any) => sub.id === 'oxygen-level');
       if (!existingSubsystem) {
         atmosphereSystem.subsystems.push({
@@ -147,7 +135,6 @@ function injectLifeSupportResources(systems: any[], inventory: ApiInventory[], s
   if (waterResource) {
     const waterSystem = enrichedSystems.find(s => s.id === 'water');
     if (waterSystem) {
-      // Only add if it doesn't already exist
       const existingSubsystem = waterSystem.subsystems.find((sub: any) => sub.id === 'water-level');
       if (!existingSubsystem) {
         waterSystem.subsystems.push({
@@ -369,10 +356,6 @@ function calculateCategoryStatus(systems: any[]): AlertStatus {
   return 'ok';
 }
 
-/**
- * Gets default dome position based on its code
- * Distributed positions to avoid overlap
- */
 function getDefaultDomePosition(code: string): { x: number; y: number } {
   const positions: Record<string, { x: number; y: number }> = {
     'DOME_CHARLIE': { x: 20, y: 25 },
@@ -380,7 +363,6 @@ function getDefaultDomePosition(code: string): { x: number; y: number } {
     'DOME_BRAVO': { x: 45, y: 70 },
   };
 
-  console.log(`getDefaultDomePosition(${code}) =>`, positions[code] || { x: 50, y: 50 });
   return positions[code] || { x: 50, y: 50 };
 }
 

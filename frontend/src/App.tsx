@@ -57,8 +57,6 @@ export default function App() {
     };
 
     const handleControlChange = (controlId: string, value: any) => {
-        console.log(`Control ${controlId} changed to:`, value);
-        
         try {
             updateControlState(controlId, value);
             

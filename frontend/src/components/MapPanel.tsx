@@ -57,12 +57,6 @@ const BACKGROUND_OPACITY = 0.6;
 const GRID_PATTERN_SIZE = '100px';
 
 export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fullscreen = false }: MapPanelProps) {
-    // Debug: Log dome positions
-    console.log('MapPanel - Dome positions:', domes.map(d => ({ 
-        name: d.name, 
-        position: d.position 
-    })));
-    
     return (
         <div className="relative w-full h-full bg-mars-bg overflow-hidden">
             <div
@@ -79,14 +73,6 @@ export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fu
 
             {domes.map((dome, index) => {
                 const colors = STATUS_COLORS[dome.status];
-                
-                console.log(`MapPanel Dome ${index}:`, {
-                    name: dome.name,
-                    id: dome.id,
-                    position: dome.position,
-                    styleLeft: `${dome.position.x}%`,
-                    styleTop: `${dome.position.y}%`
-                });
 
                 return (
                     <button
@@ -96,7 +82,7 @@ export function MapPanel({ domes, selectedDomeId, onDomeSelect, marsImageUrl, fu
                         style={{ 
                             left: `${dome.position.x}%`, 
                             top: `${dome.position.y}%`,
-                            zIndex: 20 + index  // Asegurar que cada uno tenga diferente z-index
+                            zIndex: 20 + index
                         }}
                     >
                         {dome.status === 'critical' && (

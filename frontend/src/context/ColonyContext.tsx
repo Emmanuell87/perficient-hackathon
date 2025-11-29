@@ -74,13 +74,6 @@ export function ColonyProvider({ children }: ColonyProviderProps) {
       setError(null);
       const apiDomes = await dataService.getDomes();
       
-      // Load inventory and sensors for each dome
-      console.log('🚀 refreshDomes - apiDomes received:', apiDomes.map(d => ({ 
-        id: d.id, 
-        code: d.code, 
-        name: d.name 
-      })));
-      
       const domesWithData = await Promise.all(
         apiDomes.map(async (apiDome) => {
           try {
@@ -89,15 +82,10 @@ export function ColonyProvider({ children }: ColonyProviderProps) {
               dataService.getDomeSensors(apiDome.id).catch(() => []),
             ]);
 
-            // Update inventory and sensors state
             setInventory(prev => ({ ...prev, [apiDome.id]: domeInventory }));
             setSensors(prev => ({ ...prev, [apiDome.id]: domeSensors }));
 
             const mappedDome = mapDomeToUI(apiDome, domeInventory, domeSensors, alerts);
-            console.log(`✅ Dome mapped: ${mappedDome.name}`, { 
-              id: mappedDome.id, 
-              position: mappedDome.position 
-            });
             return mappedDome;
           } catch (err) {
             console.error(`Error loading data for dome ${apiDome.id}:`, err);
@@ -106,10 +94,6 @@ export function ColonyProvider({ children }: ColonyProviderProps) {
         })
       );
 
-      console.log('📦 setDomes con:', domesWithData.map(d => ({ 
-        name: d.name, 
-        position: d.position 
-      }      )));
       setDomes(domesWithData);
       setIsLoading(false);
     } catch (err) {
@@ -197,9 +181,6 @@ export function ColonyProvider({ children }: ColonyProviderProps) {
         ...prev,
         [controlId]: value,
       }));
-      
-      // Toast is shown from App.tsx to have more context
-      console.log(`Control state updated: ${controlId} = ${value}`);
     } catch (err) {
       console.error(`Error updating control state for ${controlId}:`, err);
       toast.error(`Failed to update control: ${controlId}`, {
